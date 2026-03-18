@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="number" placeholder="Nhập số a" id="a">
+    <input type="number" placeholder="Nhập số b" id="b">
+    <button onclick="Show()">Show</button>
+    <div id="result"></div>
+
+    <script>
+        function Sum(a, b) {
+            let sum = a + b;
+
+            if (sum % 2 != 0) {
+                return sum;
+            }
+
+            return "Tổng là số chẵn";
+        }
+
+        function Show() {
+            let a = Number(document.getElementById("a").value);
+            let b = Number(document.getElementById("b").value);
+
+            document.getElementById("result").innerHTML = Sum(a, b);
+        }
+    </script>
+</body>
+
+</html>
