@@ -164,6 +164,33 @@ h1 {
     to { opacity: 1; transform: scale(1); }
 }
 
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: var(--card-bg);
+    border-radius: 20px;
+    border: 1px dashed var(--border);
+    margin-top: 2rem;
+    animation: fadeIn 0.4s ease-out;
+}
+
+.empty-state i {
+    font-size: 4rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+.empty-state h3 {
+    font-size: 1.5rem;
+    color: var(--text-main);
+    margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+    color: var(--text-muted);
+}
+
 .product-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
