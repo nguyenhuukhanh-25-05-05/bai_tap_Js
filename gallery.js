@@ -19,6 +19,10 @@ const filterButtons = document.querySelectorAll('.btn-filter');
 const sortSelect = document.getElementById('sortSelect');
 const emptyState = document.getElementById('emptyState');
 
+// Trình định dạng tiền tệ chuẩn cho Việt Nam
+const currencyFormatter = new Intl.NumberFormat('vi-VN');
+const formatPrice = (price) => currencyFormatter.format(price) + "₫";
+
 // DOM cho Giỏ hàng
 const cartToggle = document.getElementById('cartToggle');
 const closeCart = document.getElementById('closeCart');
@@ -62,7 +66,7 @@ function renderProducts(data) {
                 <span class="category">${product.category}</span>
                 <h3 class="product-name" onclick="showProductDetails(${product.id})" style="cursor:pointer">${product.name}</h3>
                 <div class="product-footer">
-                    <span class="price">${product.price.toLocaleString('vi-VN')}₫</span>
+                    <span class="price">${formatPrice(product.price)}</span>
                     <button class="add-btn" onclick="addToCart(${product.id})"><i class="fas fa-plus"></i></button>
                 </div>
             </div>
@@ -118,14 +122,14 @@ function updateCartUI() {
             <img src="${item.image}" alt="${item.name}">
             <div class="cart-item-info">
                 <div class="cart-item-name">${item.name}</div>
-                <div class="cart-item-price">${item.price.toLocaleString('vi-VN')}₫ x ${item.quantity}</div>
+                <div class="cart-item-price">${formatPrice(item.price)} x ${item.quantity}</div>
                 <div class="remove-item" onclick="removeFromCart(${item.id})">Xóa</div>
             </div>
         `;
         cartItemsContainer.appendChild(itemEl);
     });
 
-    cartTotal.innerText = total.toLocaleString('vi-VN') + "₫";
+    cartTotal.innerText = formatPrice(total);
 }
 
 function toggleCart(show) {
@@ -155,7 +159,7 @@ window.showProductDetails = function(productId) {
                     Đây là mô tả chi tiết cho sản phẩm ${product.name}. Sản phẩm tuyệt vời này giúp bạn nâng cao chất lượng cuộc sống và phong cách cá nhân.
                 </p>
                 <div style="font-size: 2rem; font-weight: 700; color: var(--primary); margin-bottom: 2rem;">
-                    ${product.price.toLocaleString('vi-VN')}₫
+                    ${formatPrice(product.price)}
                 </div>
                 <button class="checkout-btn" onclick="addToCart(${product.id}); closeProductModal();">
                     Thêm vào giỏ hàng
