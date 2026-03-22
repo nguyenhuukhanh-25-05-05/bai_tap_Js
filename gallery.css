@@ -98,6 +98,20 @@ h1 {
     color: var(--text-muted);
 }
 
+#clearSearch {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#clearSearch:hover {
+    color: var(--accent);
+}
+
 .filter-group {
     display: flex;
     gap: 0.5rem;

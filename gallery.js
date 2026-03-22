@@ -18,6 +18,7 @@ const searchInput = document.getElementById('searchInput');
 const filterButtons = document.querySelectorAll('.btn-filter');
 const sortSelect = document.getElementById('sortSelect');
 const emptyState = document.getElementById('emptyState');
+const clearSearch = document.getElementById('clearSearch');
 
 // Trình định dạng tiền tệ chuẩn cho Việt Nam
 const currencyFormatter = new Intl.NumberFormat('vi-VN');
@@ -183,8 +184,18 @@ window.closeProductModal = function() {
  */
 function handleSearch() {
     const term = searchInput.value.toLowerCase();
+    
+    // Hiển thị/ẩn nút xóa
+    clearSearch.style.display = term ? "block" : "none";
+
     const filtered = products.filter(p => p.name.toLowerCase().includes(term));
     renderProducts(filtered);
+}
+
+function clearSearchInput() {
+    searchInput.value = "";
+    clearSearch.style.display = "none";
+    renderProducts(products);
 }
 
 /**
@@ -233,6 +244,7 @@ overlay.addEventListener('click', () => {
     closeProductModal();
 });
 closeModal.addEventListener('click', closeProductModal);
+clearSearch.addEventListener('click', clearSearchInput);
 
 // Khởi tạo
 renderProducts(products);
