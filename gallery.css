@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
 
+/* --- BIẾN HỆ THỐNG --- */
 :root {
     --bg-color: #f8fafc;
     --card-bg: #ffffff;
@@ -9,7 +10,10 @@
     --text-muted: #64748b;
     --border: #e2e8f0;
     --accent: #f43f5e;
+    --success: #10b981;
 }
+
+/* --- RESET & CƠ BẢN --- */
 
 * {
     margin: 0;
@@ -46,8 +50,11 @@ h1 {
     background: linear-gradient(135deg, #6366f1, #a855f7);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text; /* Đảm bảo tính tương thích */
     margin-bottom: 0.5rem;
 }
+
+/* --- ĐIỀU KHIỂN & BỘ LỌC --- */
 
 /* Controls Section */
 .controls {
@@ -119,6 +126,8 @@ h1 {
     outline: none;
     cursor: pointer;
 }
+
+/* --- LƯỚI SẢN PHẨM --- */
 
 /* Grid Section */
 .product-grid {
@@ -273,7 +282,7 @@ h1 {
     border: 2px solid white;
 }
 
-/* Cart Sidebar Styles */
+/* --- GIỎ HÀNG SIDEBAR --- */
 .cart-sidebar {
     position: fixed;
     top: 0;
@@ -381,11 +390,10 @@ h1 {
 }
 
 .checkout-btn:hover {
-    background: var(--primary-hover);
     box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.3);
 }
 
-/* Modal Styles */
+/* --- MODAL CHI TIẾT --- */
 .modal {
     position: fixed;
     top: 0;
