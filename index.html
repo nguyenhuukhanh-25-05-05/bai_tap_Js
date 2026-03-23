@@ -3,76 +3,98 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Glassmorphism Form</title>
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>ListView JS</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 300px;
+            margin-top: 10px;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 5px;
+            text-align: center;
+        }
+
+        tr.selected {
+            background-color: #90cdf4;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="container">
-        <h1>Welcome</h1>
-        <form id="myForm" action="test.html" method="get">
-            <div class="form-group">
-                <i class="fas fa-user"></i>
-                <input type="text" id="name" placeholder="Full Name" required>
-                <div id="nameError" class="error-msg">Please enter your name</div>
-            </div>
-            <div class="form-group">
-                <i class="fas fa-envelope"></i>
-                <input type="email" id="email" placeholder="Email Address" required>
-                <div id="emailError" class="error-msg">Invalid email format</div>
-            </div>
-            <div class="form-group">
-                <i class="fas fa-lock"></i>
-                <input type="password" id="password" placeholder="Password" required>
-                <div id="passwordError" class="error-msg">Password must be at least 6 characters</div>
-            </div>
-            <input type="submit" id="submit" value="Get Started">
-        </form>
-    </div>
+
+    <input type="text" id="txtTen" placeholder="Nhập tên">
+    <input type="text" id="txtTuoi" placeholder="Nhập tuổi">
+    <button id="btn">Thêm</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Tên</th>
+                <th>Tuổi</th>
+            </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+    </table>
 
     <script>
-        const form = document.getElementById("myForm");
-        const nameInput = document.getElementById("name");
-        const emailInput = document.getElementById("email");
-        const passwordInput = document.getElementById("password");
-        
-        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        const txtTen = document.getElementById("txtTen");
+        const txtTuoi = document.getElementById("txtTuoi");
+        const btn = document.getElementById("btn");
+        const tbody = document.getElementById("tbody");
 
-        form.addEventListener("submit", function (e) {
-            let isValid = true;
+        // thêm dữ liệu
+        btn.addEventListener("click", function () {
+            const ten = txtTen.value.trim();
+            const tuoi = txtTuoi.value.trim();
 
-            // Reset errors
-            document.querySelectorAll(".error-msg").forEach(el => el.style.display = "none");
-            [nameInput, emailInput, passwordInput].forEach(el => el.classList.remove("error"));
-
-            // Validate Name
-            if (nameInput.value.trim() === "") {
-                document.getElementById("nameError").style.display = "block";
-                nameInput.classList.add("error");
-                isValid = false;
+            if (ten === "" || tuoi === "") {
+                alert("Nhập đủ đi bro");
+                return;
             }
 
-            // Validate Email
-            if (!emailRegex.test(emailInput.value)) {
-                document.getElementById("emailError").style.display = "block";
-                emailInput.classList.add("error");
-                isValid = false;
+            if (isNaN(tuoi)) {
+                alert("Tuổi phải là số");
+                return;
             }
 
-            // Validate Password
-            if (passwordInput.value.length < 6) {
-                document.getElementById("passwordError").style.display = "block";
-                passwordInput.classList.add("error");
-                isValid = false;
-            }
+            const tr = document.createElement("tr");
 
-            if (!isValid) {
-                e.preventDefault();
-            }
+            const tdTen = document.createElement("td");
+            tdTen.innerText = ten;
+
+            const tdTuoi = document.createElement("td");
+            tdTuoi.innerText = tuoi;
+
+            tr.appendChild(tdTen);
+            tr.appendChild(tdTuoi);
+            tbody.appendChild(tr);
+
+            txtTen.value = "";
+            txtTuoi.value = "";
+        });
+
+        // click để chọn + xoá
+        tbody.addEventListener("click", function (e) {
+            const tr = e.target.closest("tr");
+            if (!tr) return;
+
+            // xoá select cũ
+            document.querySelectorAll("tr").forEach(r => r.classList.remove("selected"));
+
+            // chọn dòng
+            tr.classList.add("selected");
+
+            // click lần 2 thì xoá
+            tr.addEventListener("dblclick", function () {
+                tr.remove();
+            });
         });
     </script>
+
 </body>
 
 </html>
