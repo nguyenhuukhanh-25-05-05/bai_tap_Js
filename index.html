@@ -1,100 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <title>ListView JS</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 300px;
-            margin-top: 10px;
-        }
-
-        th,
-        td {
-            border: 1px solid black;
-            padding: 5px;
-            text-align: center;
-        }
-
-        tr.selected {
-            background-color: #90cdf4;
-        }
-    </style>
-</head>
-
-<body>
-
-    <input type="text" id="txtTen" placeholder="Nhập tên">
-    <input type="text" id="txtTuoi" placeholder="Nhập tuổi">
-    <button id="btn">Thêm</button>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Tên</th>
-                <th>Tuổi</th>
-            </tr>
-        </thead>
-        <tbody id="tbody"></tbody>
-    </table>
-
-    <script>
-        const txtTen = document.getElementById("txtTen");
-        const txtTuoi = document.getElementById("txtTuoi");
-        const btn = document.getElementById("btn");
-        const tbody = document.getElementById("tbody");
-
-        // thêm dữ liệu
-        btn.addEventListener("click", function () {
-            const ten = txtTen.value.trim();
-            const tuoi = txtTuoi.value.trim();
-
-            if (ten === "" || tuoi === "") {
-                alert("Nhập đủ đi bro");
-                return;
-            }
-
-            if (isNaN(tuoi)) {
-                alert("Tuổi phải là số");
-                return;
-            }
-
-            const tr = document.createElement("tr");
-
-            const tdTen = document.createElement("td");
-            tdTen.innerText = ten;
-
-            const tdTuoi = document.createElement("td");
-            tdTuoi.innerText = tuoi;
-
-            tr.appendChild(tdTen);
-            tr.appendChild(tdTuoi);
-            tbody.appendChild(tr);
-
-            txtTen.value = "";
-            txtTuoi.value = "";
-        });
-
-        // click để chọn + xoá
-        tbody.addEventListener("click", function (e) {
-            const tr = e.target.closest("tr");
-            if (!tr) return;
-
-            // xoá select cũ
-            document.querySelectorAll("tr").forEach(r => r.classList.remove("selected"));
-
-            // chọn dòng
-            tr.classList.add("selected");
-
-            // click lần 2 thì xoá
-            tr.addEventListener("dblclick", function () {
-                tr.remove();
-            });
-        });
-    </script>
-
-</body>
-
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tailwind Pro Setup</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/main.js"></script>
+  </body>
 </html>
