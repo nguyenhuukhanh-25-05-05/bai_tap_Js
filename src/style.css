@@ -7,3 +7,14 @@
     @apply bg-slate-950 text-slate-200 antialiased;
   }
 }
+
+@layer utilities {
+  .animate-bounce-short {
+    animation: bounce-short 0.3s ease-out;
+  }
+
+  @keyframes bounce-short {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+  }
+}
